@@ -22,7 +22,7 @@ const sendMail = async (data) => {
     const [, type] = user.split('@');
 
     transporter = nodemailer.createTransport({
-      host: `smtp.${type || 'qq.com'}`,
+      host: `smtp.office365.com`,
       port: '587',
       secureConnection: false,
       auth: { user, pass }

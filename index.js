@@ -17,6 +17,15 @@ const { headers } = require('./src/config');
 
   console.log(sign_res);
 
+  let dip_res;
+  try {
+    dip_res = await dipLucky();
+  } catch (error) {
+    dip_res = error;
+  }
+
+  console.log(dip_res);
+  
   let draw_res = '';
   try {
     draw_res = await draw();
@@ -35,15 +44,6 @@ const { headers } = require('./src/config');
 
   console.log(`当前矿石：${data}`);
 
-  let dip_res;
-  try {
-    dip_res = await dipLucky();
-  } catch (error) {
-    dip_res = error;
-  }
-
-  console.log(dip_res);
-
   try {
     await sendMail({
       from: '掘金',
@@ -51,8 +51,8 @@ const { headers } = require('./src/config');
       html: `
         <h1 style="text-align: center">自动签到通知</h1>
         <p style="text-indent: 2em">签到结果：${sign_res}</p>
-        <p style="text-indent: 2em">抽奖结果：${draw_res}</p>
         <p style="text-indent: 2em">沾喜气结果：${dip_res}</p>
+        <p style="text-indent: 2em">抽奖结果：${draw_res}</p>
         <p style="text-indent: 2em">当前矿石：${data}</p><br/>
       `
     });

@@ -19,12 +19,12 @@ const sendMail = async (data) => {
   if (!EmailReg.test(user)) return Promise.reject('未正确配置邮箱账号格式！！！');
 
   try {
-    const [, type, port] = user.split('@');
+    const [, type] = user.split('@');
 
     transporter = nodemailer.createTransport({
       host: `smtp.${type || 'qq.com'}`,
-      port: port || '465',
-      secureConnection: true,
+      port: '587',
+      secureConnection: false,
       auth: { user, pass }
     });
   } catch (error) {

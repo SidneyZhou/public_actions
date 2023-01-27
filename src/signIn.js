@@ -8,6 +8,10 @@ const fetch = require('node-fetch');
 const { headers } = require('./config');
 
 async function sign_in() {
+  const response = await fetch('https://juejin.cn/user/center/signin?avatar_menu');
+  const setTimeoutP = require('timers/promises').setTimeout;
+  await setTimeoutP(Math.random() * 1000 * 3);
+
   // 查询今日是否已经签到
   const today_status = await fetch('https://api.juejin.cn/growth_api/v1/get_today_status', {
     headers,

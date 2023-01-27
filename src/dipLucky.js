@@ -8,6 +8,10 @@ const fetch = require('node-fetch');
 const { headers } = require('./config');
 
 async function dipLucky() {
+  const response = await fetch('https://juejin.cn/user/center/lottery?from=lucky_lottery_menu_bar');
+  const setTimeoutP = require('timers/promises').setTimeout;
+  await setTimeoutP(Math.random() * 1000 * 3);
+
   const list = await fetch('https://api.juejin.cn/growth_api/v1/lottery_history/global_big', {
     headers,
     method: 'POST',
